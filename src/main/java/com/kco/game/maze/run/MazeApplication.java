@@ -23,7 +23,8 @@ public class MazeApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
-        AbstractMazeBuilder builder = new MazeMapBuilder(ROW, LINE);
+//        AbstractMazeBuilder builder = new MazeMapBuilder(ROW, LINE);
+        AbstractMazeBuilder builder = new MazeArrayBuilder(ROW, LINE);
         builder.makeMaze();
         Scene scene = new Scene(root, (LINE + 2) * WIDTH_SIZE, (ROW + 2) * WIDTH_SIZE);
         Canvas canvas = new Canvas((LINE + 2) * WIDTH_SIZE, (ROW + 2) * WIDTH_SIZE);
