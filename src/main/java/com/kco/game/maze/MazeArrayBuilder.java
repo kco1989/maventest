@@ -1,6 +1,8 @@
 package com.kco.game.maze;
 
 /**
+ *  "Union-Find" 算法的一种实现
+ *  使用数组的方法
  * Created by pc on 2017/3/2.
  */
 public class MazeArrayBuilder extends AbstractMazeBuilder{

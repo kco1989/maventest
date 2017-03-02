@@ -1,6 +1,7 @@
 package com.kco.game.maze;
 
 /**
+ * 方向
  * Created by pc on 2017/3/2.
  */
 public enum Position {

@@ -1,8 +1,7 @@
 package com.kco.game.maze;
 
-import sun.awt.windows.ThemeReader;
-
 /**
+ * 三元组
  * Created by pc on 2017/3/2.
  */
 public class ThreeTuple<T1, T2, T3> extends Tuple<T1, T2>{

@@ -1,6 +1,7 @@
 package com.kco.game.maze;
 
 /**
+ * 二元祖
  * Created by pc on 2017/3/2.
  */
 public class Tuple<T1, T2> {

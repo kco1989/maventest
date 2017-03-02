@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 /**
+ * 迷宫
  * Created by pc on 2017/3/2.
  */
 public class MazeApplication extends Application {
@@ -35,6 +36,11 @@ public class MazeApplication extends Application {
         primaryStage.show();
     }
 
+    /**
+     * 画迷宫路径
+     * @param builder
+     * @param ctx
+     */
     private void drawPath(AbstractMazeBuilder builder, GraphicsContext ctx) {
         ctx.setStroke(Color.RED);
 //        ctx.setLineWidth(3);
@@ -47,6 +53,11 @@ public class MazeApplication extends Application {
         }
     }
 
+    /**
+     * 画迷宫
+     * @param builder
+     * @param ctx
+     */
     private void drawBoxes(AbstractMazeBuilder builder, GraphicsContext ctx) {
         ctx.setLineWidth(2);
         for (int i = 0; i < builder.getRow(); i ++){

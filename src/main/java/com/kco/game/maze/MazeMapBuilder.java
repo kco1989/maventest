@@ -3,6 +3,8 @@ package com.kco.game.maze;
 import java.util.*;
 
 /**
+ * "Union-Find" 算法的一种实现
+ * 使用map的方法
  * Created by pc on 2017/3/2.
  */
 public class MazeMapBuilder extends AbstractMazeBuilder{
