@@ -1,0 +1,5 @@
+import re;
+if __name__ == "__main__":
+    print(u'绝对值abs: abs(-1)={}'.format(abs(-1)))
+    m = re.search('(?<!-)\w+', 'span-egg')
+    print(m.group(0))

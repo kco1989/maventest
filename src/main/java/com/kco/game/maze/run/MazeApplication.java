@@ -18,8 +18,8 @@ import java.util.List;
 public class MazeApplication extends Application {
 
     public static final int WIDTH_SIZE = 10;
-    public static final int ROW = 50;
-    public static final int LINE = 88;
+    public static final int ROW = 65;
+    public static final int LINE = 130;
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
@@ -27,13 +27,16 @@ public class MazeApplication extends Application {
         AbstractMazeBuilder builder = new MazeArrayBuilder(ROW, LINE);
         builder.makeMaze();
         Scene scene = new Scene(root, (LINE + 2) * WIDTH_SIZE, (ROW + 2) * WIDTH_SIZE);
-        Canvas canvas = new Canvas((LINE + 2) * WIDTH_SIZE, (ROW + 2) * WIDTH_SIZE);
+        Canvas canvas = new Canvas(LINE * WIDTH_SIZE, ROW * WIDTH_SIZE);
+        canvas.setTranslateX(WIDTH_SIZE);
+        canvas.setTranslateY(WIDTH_SIZE);
         GraphicsContext ctx = canvas.getGraphicsContext2D();
 
         drawBoxes(builder, ctx);
         drawPath(builder, ctx);
         root.getChildren().add(canvas);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("迷宫生成以及迷宫求解");
         primaryStage.show();
     }
 
@@ -48,8 +51,8 @@ public class MazeApplication extends Application {
         List<AbstractMazeBuilder.MazePoint> mazePoints = builder.solvePath();
         AbstractMazeBuilder.MazePoint start = mazePoints.get(0);
         for (AbstractMazeBuilder.MazePoint point : mazePoints){
-            ctx.strokeLine(WIDTH_SIZE + WIDTH_SIZE / 2 + start.y * WIDTH_SIZE, WIDTH_SIZE + WIDTH_SIZE / 2 + start.x * WIDTH_SIZE,
-                    WIDTH_SIZE + WIDTH_SIZE / 2 + point.y * WIDTH_SIZE, WIDTH_SIZE + WIDTH_SIZE / 2 + point.x  * WIDTH_SIZE);
+            ctx.strokeLine(WIDTH_SIZE / 2 + start.y * WIDTH_SIZE, WIDTH_SIZE / 2 + start.x * WIDTH_SIZE,
+                    WIDTH_SIZE / 2 + point.y * WIDTH_SIZE, WIDTH_SIZE / 2 + point.x  * WIDTH_SIZE);
             start = point;
         }
     }
@@ -76,21 +79,21 @@ public class MazeApplication extends Application {
             }
             switch (position){
                 case TOP:
-                    ctx.strokeLine(WIDTH_SIZE + line * WIDTH_SIZE, WIDTH_SIZE + row * WIDTH_SIZE,
-                            WIDTH_SIZE + (line + 1) * WIDTH_SIZE, WIDTH_SIZE + row  * WIDTH_SIZE);
+                    ctx.strokeLine(line * WIDTH_SIZE, row * WIDTH_SIZE,
+                            (line + 1) * WIDTH_SIZE, row  * WIDTH_SIZE);
                     break;
                 case RIGHT:
-                    ctx.strokeLine(WIDTH_SIZE + (line + 1) * WIDTH_SIZE, WIDTH_SIZE + row * WIDTH_SIZE,
-                            WIDTH_SIZE + (line + 1) * WIDTH_SIZE, WIDTH_SIZE + (row + 1)  * WIDTH_SIZE);
+                    ctx.strokeLine((line + 1) * WIDTH_SIZE, row * WIDTH_SIZE,
+                            (line + 1) * WIDTH_SIZE, (row + 1)  * WIDTH_SIZE);
                     break;
                 case DOWN:
-                    ctx.strokeLine(WIDTH_SIZE + (line + 1) * WIDTH_SIZE, WIDTH_SIZE + (row + 1) * WIDTH_SIZE,
-                            WIDTH_SIZE + line * WIDTH_SIZE, WIDTH_SIZE + (row + 1) * WIDTH_SIZE);
+                    ctx.strokeLine((line + 1) * WIDTH_SIZE, (row + 1) * WIDTH_SIZE,
+                            line * WIDTH_SIZE, (row + 1) * WIDTH_SIZE);
                     break;
                 case LEFT:
                 default:
-                    ctx.strokeLine(WIDTH_SIZE + line * WIDTH_SIZE, WIDTH_SIZE + (row + 1) * WIDTH_SIZE,
-                            WIDTH_SIZE + line * WIDTH_SIZE, WIDTH_SIZE + row  * WIDTH_SIZE);
+                    ctx.strokeLine(line * WIDTH_SIZE, (row + 1) * WIDTH_SIZE,
+                            line * WIDTH_SIZE, row  * WIDTH_SIZE);
                     break;
             }
         }
