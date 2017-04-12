@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+</head>
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="DemoController">
+            <input type="text" ng-model="name">
+            {{name | uppercase}}
+            <hr>
+            <input type="text" ng-model="fristName">
+            {{ fristNameLowerCase }}
+            <hr>
+            {{ 123.456789 | number:2}}
+            <hr>
+            {{ 123.456 | currency }} <hr>
+            {{ today | date}} <hr>
+            medium - {{ today | date:'medium'}} <hr>
+            short - {{ today | date:'short'}} <hr>
+            fullDate - {{ today | date:'fullDate'}} <hr>
+            longDate - {{ today | date:'longDate'}} <hr>
+            mediumDate - {{ today | date:'mediumDate'}} <hr>
+            shortDate - {{ today | date:'shortDate'}} <hr>
+            mediumTime - {{ today | date:'mediumTime'}} <hr>
+            shortTime - {{ today | date:'shortTime'}} <hr>
+            yyyy - {{ today | date:'yyyy'}} <hr>
+            yy - {{ today | date:'yy'}} <hr>
+            y - {{ today | date:'y'}} <hr>
+            MMMM - {{ today | date:'MMMM'}} <hr>
+            MMM - {{ today | date:'MMM'}} <hr>
+            MM - {{ today | date:'MM'}} <hr>
+            M - {{ today | date:'M'}} <hr>
+            dd - {{ today | date:'dd'}} <hr>
+            d - {{ today | date:'d'}} <hr>
+            EEEE - {{ today | date:'EEEE'}} <hr>
+            EEE - {{ today | date:'EEE'}} <hr>
+            HH - {{ today | date:'HH'}} <hr>
+            H - {{ today | date:'H'}} <hr>
+            hh - {{ today | date:'hh'}} <hr>
+            h - {{ today | date:'h'}} <hr>
+            mm - {{ today | date:'mm'}} <hr>
+            m - {{ today | date:'m'}} <hr>
+            ss - {{ today | date:'ss'}} <hr>
+            s - {{ today | date:'s'}} <hr>
+            Z - {{ today | date:'Z'}} <hr>
+            MMMD,y - {{ today | date:'MMMD,y'}} <hr>
+            EEEE,d,M - {{ today | date:'EEEE,d,M'}} <hr>
+            hh:mm:ss:sss - {{ today | date:'hh:mm:ss:sss'}} <hr>
+            <h1>filter</h1>
+            ['Ari', 'Lerner', 'Likes', 'To', 'Eat', 'Pizza'] | filter: 'e' ->
+            {{ ['Ari', 'Lerner', 'Likes', 'To', 'Eat', 'Pizza'] | filter: 'e'}} <hr>
+            <pre>
+            [{
+            'name': 'Ari',
+            'City': 'San Francisco',
+            'favortite food': 'Pizza'
+            },{
+            'name': 'Nate',
+            'City': 'San Francisco',
+            'favortite food': 'indlan food'
+            }] | filter : {'favortite food' : 'Pizza'} -->
+            </pre>
+            {{
+                [{
+                    'name': 'Ari',
+                   'City': 'San Francisco',
+                   'favortite food': 'Pizza'
+                },{
+                    'name': 'Nate',
+                    'City': 'San Francisco',
+                    'favortite food': 'indlan food'
+                }] | filter : {'favortite food' : 'Pizza'}
+            }}
+
+        </div>
+    </div>
+
+    <script src="../js/example7.js"></script>
+</body>
+</html>
