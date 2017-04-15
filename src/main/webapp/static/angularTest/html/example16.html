@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+</head>
+<body>
+
+<div ng-include="myTemplateName.html" ng-controller="MyController" ng-init="name='World'">
+    Hello {{ name }}
+</div>
+
+<script src="../js/example16.js"></script>
+</body>
+</html>

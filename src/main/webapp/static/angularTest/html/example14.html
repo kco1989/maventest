@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+</head>
+<body>
+
+<input type="text" ng-model="someProperty" placeholder="TypetoEnable">
+<button ng-model="button" ng-disabled="!someProperty">AButton</button>
+<hr>
+
+<textarea ng-disabled="isDisabled" id="" >Wait 5s</textarea>
+<hr>
+
+Type here to make sibling readonly:
+<input type="text" ng-model="input2">
+<input type="text" ng-readonly="input2" value="Some text here">
+<hr>
+
+<label>label = {{ lable }}</label>
+<input type="checkbox" ng-checked="lable"
+    ng-init="lable = true" ng-model="lable">
+
+
+<label>label = {{ lable2 }}</label>
+<input type="checkbox" ng-checked="lable2"
+       ng-init="lable2 = false" ng-model="lable2">
+<hr>
+
+
+<label >Select Two Fish:</label>
+<input type="checkbox" ng-model="isTwoFish"><br>
+<select>
+    <option>One Fish</option>
+    <option ng-selected="isTwoFish">Two Fish</option>
+</select>
+<hr>
+
+<a ng-href="{{ myHref }}">I'm feeling lucky, when I load</a> <br>
+<a href="{{ myHref }}">I'm feeling 404</a> <br>
+<hr>
+
+<h1>WrongWay</h1>
+<img src="{{ imgSrc }}">
+
+<h1>Rightway</h1>
+<img ng-src="{{ imgSrc }}">
+<script src="../js/example14.js"></script>
+
+
+</body>
+</html>

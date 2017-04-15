@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+</head>
+<body>
+<div  ng-controller="myController">
+    <div>父scope：
+        <div>Say：{{value}}</div>
+    </div>
+    <div>隔离scope：
+        <div isolated-directive action="click()"></div>
+    </div>
+</div>
+
+    <script>
+        angular.module('myApp', [])
+            .controller("myController", function ($scope) {
+                $scope.value = "hello world";
+                $scope.click = function () {
+                    $scope.value = Math.random();
+                };
+            }).directive("isolatedDirective", function () {
+                return {
+                    scope: {
+                        action: "&"
+                    },
+                    template: '<input type="button" value="在directive中执行父scope定义的方法" ng-click="action()"/>'
+                }
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+</head>
+<body>
+
+    <div ng-controller="SomeController">
+        {{ someModel.someValue }}
+        <button ng-click="someAction()">Communicate to child</button>
+        <div ng-controller="ChildController">
+            {{ someModel.someValue }}
+            <button ng-click="childAction()">Communicate to parent</button>
+        </div>
+    </div>
+
+
+
+<script src="../js/example15.js"></script>
+</body>
+</html>
