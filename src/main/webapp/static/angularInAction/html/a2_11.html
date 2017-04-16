@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+
+<div ng-controller="mainController">
+    选择的值为: {{ a }}
+    <select ng-model="a" ng-options="txt for txt in data1">
+        <option value="">--请选择--</option>
+    </select>
+    <hr>
+    选择的值为: {{ b }}
+    <select ng-model="b" ng-options="txt for txt in data2">
+        <option value="">--请选择--</option>
+    </select>
+
+    <hr>
+    选择的值为: {{ c }}
+    <select ng-model="c" ng-options="d.id as d.name for d in data3">
+        <option value="">--请选择--</option>
+    </select>
+
+    <hr>
+    选择的值为: {{ d }}
+    <select ng-model="d" ng-options="d.id as d.name group by d.key for d in data4">
+        <option value="">--请选择--</option>
+    </select>
+</div>
+
+
+<script type="text/javascript">
+        angular.module('myApp', [])
+            .controller('mainController', ['$scope', function ($scope) {
+                $scope.data1 = ['A', 'B', 'C', 'D'];
+                $scope.data2 = [1, 2, 3, 4];
+                $scope.data3 = [
+                    {id: '1', name: 'A'},
+                    {id: '2', name: 'B'},
+                    {id: '3', name: 'C'},
+                    {id: '4', name: 'D'}
+                ];
+                $scope.data4 = [
+                    {id: '1', name: 'A', key:'group1'},
+                    {id: '2', name: 'B', key:'group2'},
+                    {id: '3', name: 'C', key:'group1'},
+                    {id: '4', name: 'D', key:'group2'}
+                ];
+            }]);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+
+<div ng-controller="mainController">
+    <div class="{{ cls }}">{{ show }}</div>
+    <button ng-click="onClick()">Click me.</button>
+</div>
+<script type="text/javascript">
+        angular.module('myApp', [])
+            .config(function ($controllerProvider) {
+                debugger;
+                $controllerProvider.register('mainController', ['$scope', function ($scope) {
+                    $scope.cls = "";
+                    $scope.onClick = function () {
+                        $scope.cls = "show";
+                        $scope.show = "when show after click ";
+                    };
+                }]);
+            });
+//            .controller('mainController', ['$scope', function ($scope) {
+//
+//            }]);
+</script>
+</body>
+</html>

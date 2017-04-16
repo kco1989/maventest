@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+
+<div ng-controller="mainController">
+    <input type="text" id="btnAlert" value="弹出对话框" ng-click="onClick('我是一个弹出对话框')">
+</div>
+<script type="text/javascript">
+        angular.module('myApp', [])
+            .factory('$show', function ($window) {
+                return{
+                    show: function (text) {
+                        $window.alert(text);
+                    }
+                }
+            })
+            .controller('mainController', function ($scope, $show) {
+                $scope.onClick = function (msg) {
+                    $show.show(msg);
+                }
+            })
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular-route.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+
+<div ng-controller="mainController">
+    <div >current address: {{ url }}</div>
+    <div >current address: {{ location }}</div>
+    <button ng-click="onclick()">show address</button>
+</div>
+
+<script type="text/javascript">
+    angular.module('myApp', [])
+        .controller('mainController', function ($scope, $location) {
+//            debugger;
+            $scope.onclick = function () {
+                $scope.url = $location.absUrl();
+                $scope.location = $location.search();
+            }
+        })
+</script>
+</body>
+</html>

@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
-    <script src="../../plugin/angular-1.5.0-rc.2/"></script>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular-route.js"></script>
     <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
 </head>
 <body>
+    <div ng-controller="MainController">
+        <header>
+            <h1>Header</h1>
+        </header>
+        Choose:
+        <a href="#/">/</a> |
+        <a href="#/login">login</a> |
+        <a href="#/dashboard">dashboard</a> |
+        <a href="#/Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
+        <div class="content">
+            <div ng-view></div>
+        </div>
+        <footer>
+            <h5>Footer</h5>
+        </footer>
+    </div>
 
+
+<script src="../js/example22.js"></script>
 </body>
 </html>

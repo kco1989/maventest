@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="a2_10">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+    <style>
+        body{
+            font-size: 16px;
+        }
+        ul{
+            list-style-type: none;
+            width: 408px;
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            float: left;
+            padding: 5px 0;
+        }
+        ul .odd{
+            color: #0026ff;
+        }
+        ul .even{
+            color: #ffff00;
+        }
+        ul .bold{
+            font-weight:bold;
+        }
+        ul li span{
+            width: 52px;
+            float: left;
+            padding: 0px 10px;
+        }
+        ul .focus{
+            background-color: #cccccc;
+        }
+
+    </style>
+</head>
+<body>
+
+<div ng-controller="c2_10">
+    <ul>
+        <li ng-cloak="{{ bold }}">
+            <span>序号</span>
+            <span>姓名</span>
+            <span>性别</span>
+            <span>是否首条</span>
+            <span>时候尾条</span>
+        </li>
+        <li ng-repeat="stu in data"
+            ng-class-odd="'odd'" ng-class-even="'even'"
+            ng-click="li_click($index)" ng-class="{focus: $index==focus}">
+            <span>{{ $index+1 }}</span>
+            <span>{{ stu.name }}</span>
+            <span>{{ stu.sex }}</span>
+            <span>{{ $first? '是' : '否'}}</span>
+            <span>{{ $last? '是' : '否'}}</span>
+        </li>
+    </ul>
+
+</div>
+
+
+<script type="text/javascript">
+    var a2_9 = angular.module('a2_10', []);
+    a2_9.controller('c2_10', ['$scope', function ($scope) {
+        $scope.data = [
+            {name: 'Jack', sex: 'Man'},
+            {name: 'Lily', sex: 'woman'},
+            {name: 'Tom', sex: 'Man'},
+            {name: 'Davy', sex: 'Man'}
+        ];
+        $scope.bold = 'bold';
+        $scope.li_click = function (i) {
+            $scope.focus = i;
+        }
+    }])
+</script>
+</body>
+</html>
