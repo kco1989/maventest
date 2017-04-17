@@ -9,33 +9,36 @@ angular.module('myApp', ['ngRoute'])
 
     })
     .controller('LoginController', function ($scope) {
-
+        debugger
     })
-    .controller('DashboardController', function ($scope) {
-
+    .controller('DashboardController', function ($scope, $routeParams, user) {
+        $scope.hello = $routeParams;
+        $scope.user = user;
     })
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider','$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home.html',
                 controller: 'HomeController'
             })
             .when('/login', {
-                templateUrl: 'login.html',
+                templateUrl: 'views/login.html',
                 controller: 'LoginController'
             })
-            .when('/dashboard', {
+            .when('/dashboard/:id', {
                 templateUrl: 'views/dashboard.html',
                 controller: 'DashboardController',
                 resolve:{
-                    user: function (SessionService) {
-                        return SessionService.getCurrentUser();
+                    user: function($q, $timeout) {
+                        
+                        return "hello";
                     }
                 }
             })
             .otherwise({
                 redirectTo: '/'
             });
+        debugger;
         $locationProvider.html5Mode(true);
     }])
 ;
