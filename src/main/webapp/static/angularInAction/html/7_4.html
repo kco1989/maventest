@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <div>
+            <input type="text" ng-model="cname" size="6">
+            <button ng-click="cset()">setting</button>
+            <button ng-click="cshow()">show</button>
+            <button ng-click="cdel()">delete</button>
+            <div class="tip">cache value is : {{ cvalue }}</div>
+        </div>
+    </div>
+    <script>
+        function test() {
+            console.log("test");
+            function test2() {
+                console.log("test2");
+            }
+        }
+        test.prototype.test3 = function () {
+            console.log("test3");
+        };
+        angular.module('myApp', [])
+            .service("cache", function ($cacheFactory) {
+                return $cacheFactory("test");
+            })
+            .controller('mainController', function ($scope, cache) {
+                $scope.cset = function () {
+                    cache.put("mytest", $scope.cname);
+                };
+                $scope.cshow = function () {
+                    var tcache = cache.get("mytest");
+                    $scope.cvalue = tcache ? tcache : "null";
+                };
+                $scope.cdel = function () {
+                    cache.remove("mytest");
+
+                }
+            })
+    </script>
+</body>
+</html>

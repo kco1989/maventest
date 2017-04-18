@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular-resource.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <ul style="margin-bottom: 80px;">
+            <li ng-repeat="item in items">
+                <span>{{ item.code }}</span>
+                <span>{{ item.name }}</span>
+                <span>{{ item.sex }}</span>
+            </li>
+        </ul>
+        <div>
+            key value: <input type="text" ng-model="key">
+            <button ng-click="save()">save</button>
+            <div class="tip">{{ result }}</div>
+        </div>
+    </div>
+    <script>
+        angular.module('myApp', ['ngResource'])
+            .config(function ($httpProvider) {
+                $httpProvider.defaults.transformRequest = function (obj) {
+                    var arrStr = [];
+                    for (var p in obj){
+                        arrStr.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+                    }
+                    return arrStr.join("&");
+                };
+                $httpProvider.defaults.headers.post = {
+                    'Content-Type' : 'application/x-www-form-urlencoded'
+                }
+            })
+            .controller('mainController', function ($scope, $resource) {
+                var stus = $resource('/angluarAction/test7_5.do');
+                stus.query({
+                    action: 'search'
+                },function (resp) {
+                    $scope.items = resp;
+                });
+                stus.save = function () {
+                    var data ={
+                        key: $scope.key
+                    };
+                    stus.save({
+                        action: 'save'
+                    },data, function (resp) {
+                        $scope.result = (resp[0] == '1') ? "save sucess" : 'save failed';
+                    })
+                }
+            })
+    </script>
+</body>
+</html>

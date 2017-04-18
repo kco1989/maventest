@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular-resource.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+    <script type="text/ng-template" id="tpl">
+        <button>click button</button>
+    </script>
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <ts-tplscipt></ts-tplscipt>
+        <div>{{ content }}</div>
+    </div>
+    <script>
+        angular.module('myApp', [])
+            .directive('tsTplscipt', function () {
+                return{
+                    restrict: "EAC",
+                    templateUrl: 'tpl',
+                    replace: true,
+                    link: function (scope, iEle, iAttrs) {
+                        iEle.bind('click', function () {
+                            scope.$apply(function () {
+                                scope.num ++;
+                                scope.content = "after click button " + scope.num;
+                            });
+//                            iAttrs.$$element[0].disabled = true;
+                        })
+                    }
+                }
+            })
+            .controller('mainController', function ($scope) {
+                $scope.num = 10;
+                $scope.content = "before click button " + $scope.num;
+
+            })
+    </script>
+</body>
+</html>

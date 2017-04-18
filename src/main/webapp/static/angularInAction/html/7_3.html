@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <div class="show">
+            <input type="number" ng-model="num">
+            <button ng-click="onclick()">is odd or even?</button>
+            <div class="tip">you input num is: {{ result }}</div>
+        </div>
+    </div>
+    <script>
+        angular.module('myApp', [])
+            .controller('mainController', function ($scope, $http) {
+                $scope.num = 0;
+                $scope.result = "even";
+                $scope.onclick = function () {
+                    $http({
+                        method: 'GET',
+                        url: '/angluarAction//test7_3.do',
+                        params:{
+                            n: $scope.num
+                        }
+                    }).success(function (data, status, header, config){
+                        $scope.result = data;
+                    });
+                }
+            })
+    </script>
+</body>
+</html>

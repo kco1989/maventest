@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular-resource.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <div>
+            <div>{{ t0 }}</div>
+            <div>{{ t1 }}</div>
+            <button ng-click="action(true)">解决</button>
+            <button ng-click="action(false)">拒绝</button>
+        </div>
+    </div>
+    <script>
+        angular.module('myApp', [])
+            .controller('mainController', function ($scope, $q) {
+                var defer = $q.defer();
+                $scope.action = function (type) {
+                    debugger;
+                    defer.notify(100);
+                    type ? defer.resolve(5) : defer.reject(10);
+                };
+                var promise = defer.promise;
+                promise.then(function (n) {
+                    debugger;
+                    n ++;
+                    $scope.t1 = "已处理完成:" + n;
+                },function (n) {
+                    debugger;
+                    n ++;
+                    $scope.t1 = "未处理完成:" + n;
+                }, function (n) {
+                    debugger;
+                    n ++;
+                    $scope.t0 = "正在处理中:" + n;
+                })
+            })
+    </script>
+</body>
+</html>

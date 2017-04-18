@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <div class="show">
+            <div class="tip">Post 返回的结果是: {{ result }}</div>
+            <button ng-click="onClick()">Send</button>
+        </div>
+    </div>
+    <script>
+        angular.module('myApp', [])
+            .config(function ($httpProvider) {
+                $httpProvider.defaults.transformRequest = function (obj) {
+                    var arrStr = [];
+                    for (var p in obj){
+                        arrStr.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]))
+                    }
+                    return arrStr.join("&");
+                };
+                $httpProvider.defaults.headers.post = {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                };
+            })
+            .controller('mainController', function ($scope, $http) {
+                var postData = {name : 'Tom'};
+                $scope.onClick = function () {
+                    debugger;
+                    $http.post('/angluarAction/test7_2.do', postData)
+                        .success(function (data, status, headers, config) {
+                            debugger;
+                            $scope.result = data;
+                        })
+                        .error(function (data) {
+                            debugger;
+                        })
+                }
+            })
+    </script>
+</body>
+</html>

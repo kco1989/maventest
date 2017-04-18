@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular-resource.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <ts-a>
+            <ts-b>
+                {{tip}}
+            </ts-b>
+        </ts-a>
+    </div>
+    <script>
+        angular.module('myApp', [])
+            .directive('tsA', function () {
+                return{
+                    restrict: "EAC",
+                    compile: function (tEle, tAttrs, trans) {
+                        console.log("compiling A....")
+                        return {
+                            pre: function (scope, iEle, iAttrs) {
+                                console.log("compiling A's pre function...")
+                            },
+                            post: function (scope, iEle, iAttrs) {
+                                console.log("compiling A's post function...")
+                            }
+                        }
+                    }
+                }
+            })
+            .directive('tsB', function () {
+                return{
+                    restrict: "EAC",
+                    compile: function (tEle, tAttrs, trans) {
+                        debugger;
+                        console.log("compiling B....")
+                        return {
+                            pre: function (scope, iEle, iAttrs) {
+                                console.log("compiling B's pre function...")
+                            },
+                            post: function (scope, iEle, iAttrs) {
+                                console.log("compiling B's post function...")
+                            }
+                        }
+                    }
+                }
+            })
+            .controller('mainController', function ($scope) {
+                $scope.tip = "flower compile run process: ";
+            })
+    </script>
+</body>
+</html>

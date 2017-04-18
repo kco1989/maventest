@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular.js"></script>
+    <script src="../../plugin/angular-1.5.0-rc.2/angular-resource.js"></script>
+    <link rel="stylesheet" href="../../plugin/foundation/css/foundation.css">
+
+</head>
+<body>
+    <div class="frame" ng-controller="mainController">
+        <ts-parent>
+            <div>{{ ptip }}</div>
+            <ts-child>
+                <div>{{ ctip }}</div>
+            </ts-child>
+            <button ng-click="click()">换位</button>
+        </ts-parent>
+    </div>
+    <script>
+        angular.module('myApp', [])
+            .directive('tsParent', function () {
+                return{
+                    restrict: 'EAC',
+                    controller: function ($scope, $compile, $http) {
+                        this.addChild = function (c) {
+                            $scope.ptip = "today is nice.";
+                            $scope.click = function () {
+                                $scope.tmp = $scope.ptip;
+                                $scope.ptip = c.ctip;
+                                c.ctip = $scope.tmp;
+                            }
+                        }
+                    }
+                }
+            })
+            .directive('tsChild', function () {
+                return{
+                    restrict: 'EAC',
+                    require: '^?tsParent',
+                    link: function (scope, iEle, iAttrs, ctrl) {
+                        scope.ctip = " It is 18."
+                        ctrl.addChild(scope);
+                    }
+                }
+            })
+            .controller('mainController', function ($scope) {
+
+            })
+    </script>
+</body>
+</html>
