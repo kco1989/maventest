@@ -1,3 +1,7 @@
+>本人邮箱: <kco1989@qq.com>
+>欢迎转载,转载请注明网址 <http://blog.csdn.net/tianshi_kco>
+>github: <https://github.com/kco1989/kco>
+>代码已经全部托管[github](https://github.com/kco1989/maventest)有需要的同学自行下载
 
 # 引言
 在工作项目中遇到以下一个问题.
