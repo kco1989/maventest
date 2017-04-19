@@ -31,7 +31,7 @@ public class GradientRateRole implements ProfitRole {
     private int find(double money) {
         int result = 0;
         for(Double limit : limits){
-            if (money < limits.get(result)){
+            if (money < limit){
                 return result;
             }
             result ++;
