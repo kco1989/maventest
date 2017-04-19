@@ -1,15 +1,17 @@
-package com.kco.profit;
+package com.kco.profit.demo1.role.impl;
+
+import com.kco.profit.demo1.role.ProfitRole;
 
 /**
  * 每笔固定收益和固定收益率
  * Created by Administrator on 2017/4/14.
  */
-public class FixedIncomeAndFixedRateProfitRole implements ProfitRole {
+public class FixedRateAndFixedIncomeRole implements ProfitRole {
 
     private double fixedRate;
     private double fixedIncome;
 
-    public FixedIncomeAndFixedRateProfitRole(double fixedRate, double fixedIncome) {
+    public FixedRateAndFixedIncomeRole(double fixedRate, double fixedIncome) {
         this.fixedRate = fixedRate * 0.01;
         this.fixedIncome = fixedIncome;
     }

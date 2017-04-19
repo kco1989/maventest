@@ -1,5 +1,7 @@
 package com.kco.profit;
 
+import com.kco.profit.demo1.ProfitType;
+import com.kco.profit.demo1.role.factory.ProfitRoleFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,7 +35,7 @@ public class TestProfitRole {
     @Test
     public void testFixedRateAndFixedIncome(){
         for (double data : testDate){
-            double profit = ProfitRoleFactory.getProfit(data, ProfitType.FIXED_INCOME_AND_FIXED_RATE, "0.63%+3.00");
+            double profit = ProfitRoleFactory.getProfit(data, ProfitType.FIXED_RATE_AND_FIXED_INCOME, "0.63%+3.00");
             Assert.assertEquals(data * 0.63 * 0.01 + 3.0, profit, 0.00001);
         }
     }

@@ -1,4 +1,4 @@
-package com.kco.profit;
+package com.kco.profit.demo1;
 
 import java.util.regex.Pattern;
 
@@ -18,7 +18,7 @@ public enum ProfitType {
     /**
      * 每笔收益率为0.1%加上固定收益1元，则填写代理商收益0.1%+1.00;
      */
-    FIXED_INCOME_AND_FIXED_RATE("^"+ProfitType.rateNumber  + "\\+" + ProfitType.realNumber + "$"),
+    FIXED_RATE_AND_FIXED_INCOME("^"+ ProfitType.rateNumber  + "\\+" + ProfitType.realNumber + "$"),
     /**
      * 每笔收益率为0.1%，封顶3元，保底1元则填写代理商收益1.00~0.1%~3.00;
      */
@@ -30,7 +30,7 @@ public enum ProfitType {
      * 少于30000 按照 0.3% 分润
      * 多于30000 按照 0.5% 分润
      */
-    GRADIENT_RATE("^"+ProfitType.rateNumber+"(<"+ProfitType.realNumber+"<"+ProfitType.rateNumber+")+$");
+    GRADIENT_RATE("^"+ ProfitType.rateNumber+"(<"+ ProfitType.realNumber+"<"+ ProfitType.rateNumber+")+$");
 
     // 非捕捉匹配正实数
     private static final String number = "(?:(?:[1-9]+\\d*)|(?:\\d))(?:\\.\\d+)?";

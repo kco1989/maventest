@@ -1,17 +1,19 @@
-package com.kco.profit;
+package com.kco.profit.demo1.role.impl;
+
+import com.kco.profit.demo1.role.ProfitRole;
 
 /**
  * 每笔固定收益率,设置保底和封顶
  * Created by Administrator on 2017/4/14.
  */
-public class FixedRateAndUpperLimitProfitRole implements ProfitRole {
+public class FixedRateAndUpperLimitRole implements ProfitRole {
 
 
     private double lowerIncome;
     private double fixedRate;
     private double upperIncome;
 
-    public FixedRateAndUpperLimitProfitRole(double lowerIncome, double fixedRate, double upperIncome) {
+    public FixedRateAndUpperLimitRole(double lowerIncome, double fixedRate, double upperIncome) {
         this.lowerIncome = lowerIncome;
         this.fixedRate = fixedRate * 0.01;
         this.upperIncome = upperIncome;

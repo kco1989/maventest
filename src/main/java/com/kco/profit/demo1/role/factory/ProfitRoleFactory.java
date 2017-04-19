@@ -1,4 +1,8 @@
-package com.kco.profit;
+package com.kco.profit.demo1.role.factory;
+
+import com.kco.profit.demo1.ProfitType;
+import com.kco.profit.demo1.role.ProfitRole;
+import com.kco.profit.demo1.role.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +22,14 @@ public final class ProfitRoleFactory {
         }
         switch (type){
             case FIXED_INCOME:
-                return new FixedIncomeProfitRole(Double.parseDouble(matcher.group(1)));
+                return new FixedIncomeRole(Double.parseDouble(matcher.group(1)));
             case FIXED_RATE:
-                return new FixedRateProfitRole(Double.parseDouble(matcher.group(1)));
+                return new FixedRateRole(Double.parseDouble(matcher.group(1)));
             case FIXED_RATE_AND_UPPER_LIMIT:
-                return new FixedRateAndUpperLimitProfitRole(Double.parseDouble(matcher.group(1)),
+                return new FixedRateAndUpperLimitRole(Double.parseDouble(matcher.group(1)),
                         Double.parseDouble(matcher.group(2)), Double.parseDouble(matcher.group(3)));
-            case FIXED_INCOME_AND_FIXED_RATE:
-                return new FixedIncomeAndFixedRateProfitRole(Double.parseDouble(matcher.group(1)),
+            case FIXED_RATE_AND_FIXED_INCOME:
+                return new FixedRateAndFixedIncomeRole(Double.parseDouble(matcher.group(1)),
                         Double.parseDouble(matcher.group(2)));
             case GRADIENT_RATE:
                 List<Double> rates = new ArrayList<>();
@@ -39,7 +43,7 @@ public final class ProfitRoleFactory {
                         limits.add(Double.parseDouble(numberMatcher.group()));
                     }
                 }
-                return new GradientRateProfitRole(rates, limits);
+                return new GradientRateRole(rates, limits);
             default: //never come here
                 return null;
         }
@@ -53,3 +57,4 @@ public final class ProfitRoleFactory {
         return 0;
     }
 }
+
