@@ -1,3 +1,9 @@
+>本人邮箱: <kco1989@qq.com>
+>欢迎转载,转载请注明网址 <http://blog.csdn.net/tianshi_kco>
+>github: <https://github.com/kco1989/kco>
+>代码已经全部托管[github](https://github.com/kco1989/maventest)有需要的同学自行下载
+
+
 # 引言
 在上一篇文章中[使用简单工厂编写不同的分润规则]()遗留着一个问题,那就是如果要新增分润规则,则需要修改原来的类.也就是代码没有完全解耦.
 因此在这一篇中,我将分润规则的设计改为抽象工厂模式来编写.以解决上次遗留的问题.
@@ -162,6 +168,9 @@ public class ProfitType {
 3. `FixedRateAndFixedIncomeRoleFactory` -> `FixedRateAndFixedIncomeRole`
 4. `FixedRateAndUpperLimitRoleFactory` -> `FixedRateAndUpperLimitRole`
 5. `GradientRateRoleFactory` -> `GradientRateRole`
+
+## 实现新的分润规则
+如果需要实现新的分润规则,则分别编写一个分润规则工厂类和分润规则实现类,使其实分别继承(/实现)`ProfitRoleFactory`和`ProfitRole`,然后再调用`ProfitType.registerProfitRole`注册一下新的分润规则就万事大吉了.不需要修改原有的代码.也就是实现了完全解耦.
 
 ## 测试类
 
