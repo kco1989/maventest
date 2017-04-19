@@ -52,4 +52,20 @@ public class TestProfitRole {
             Assert.assertEquals(actual, profit, 0.00001);
         }
     }
+
+    @Test
+    public void testGradientRate(){
+        for (double data : testDate){
+            double profit = ProfitRoleFactory.getProfit(data, ProfitType.GRADIENT_RATE, "0.1%<1000<0.2%<5000<0.3%<15000<0.5%");
+            if (data < 1000){
+                Assert.assertEquals(data * 0.01 * 0.1, profit, 0.00001);
+            }else if (data < 5000){
+                Assert.assertEquals(data * 0.01 * 0.2, profit, 0.00001);
+            }else if(data < 15000){
+                Assert.assertEquals(data * 0.01 * 0.3, profit, 0.00001);
+            }else{
+                Assert.assertEquals(data * 0.01 * 0.5, profit, 0.00001);
+            }
+        }
+    }
 }

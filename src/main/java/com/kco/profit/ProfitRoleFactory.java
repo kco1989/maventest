@@ -1,6 +1,9 @@
 package com.kco.profit;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 分润规则生成工厂
@@ -24,6 +27,19 @@ public final class ProfitRoleFactory {
             case FIXED_INCOME_AND_FIXED_RATE:
                 return new FixedIncomeAndFixedRateProfitRole(Double.parseDouble(matcher.group(1)),
                         Double.parseDouble(matcher.group(2)));
+            case GRADIENT_RATE:
+                List<Double> rates = new ArrayList<>();
+                List<Double> limits = new ArrayList<>();
+                Pattern numberPattern = ProfitType.getNumberPattern();
+                Matcher numberMatcher = numberPattern.matcher(expression);
+                for (int i = 0;numberMatcher.find();i ++){
+                    if (i % 2 == 0){
+                        rates.add(Double.parseDouble(numberMatcher.group()));
+                    }else{
+                        limits.add(Double.parseDouble(numberMatcher.group()));
+                    }
+                }
+                return new GradientRateProfitRole(rates, limits);
             default: //never come here
                 return null;
         }
