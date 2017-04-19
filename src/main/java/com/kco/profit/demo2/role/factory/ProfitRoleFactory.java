@@ -11,13 +11,13 @@ import java.util.regex.Matcher;
  */
 public abstract class ProfitRoleFactory {
 
-    public ProfitRole createProfitRole(String profitTypeName, String expression){
+    public static ProfitRole createProfitRole(String profitTypeName, String expression){
         ProfitType profitType = ProfitType.getProfitType(profitTypeName);
         Matcher matcher = profitType.getPattern().matcher(expression);
         if (!matcher.matches()){
             throw new RuntimeException("分润表示时不符合" + profitType.getName() + "的规则.");
         }
-        return newProfitRole(profitType, matcher, expression);
+        return profitType.getFactory().newProfitRole(profitType, matcher, expression);
     }
 
     protected abstract ProfitRole newProfitRole(ProfitType profitType, Matcher matcher, String expression);
